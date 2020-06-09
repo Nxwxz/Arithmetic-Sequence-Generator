@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arithmetic Sequence</title>
+
+        <script>
+            function arithmeticSequence() {
+                var term1 = parseInt(document.getElementById("t1").value);
+                var difference = parseInt(document.getElementById("cd").value);
+                var termn = parseInt(document.getElementById("tn").value);
+                var output = "";
+                if (isNaN(term1) || isNaN(difference) || isNaN(termn)){
+                    output = output + "Please use integers."
+                }
+                else if (termn <= term1 && difference >= 0 && difference != 0 && difference != termn) {
+                    output = output + "Difference should be negative or last term should be positive for this sequence to work."
+                }
+                else if (termn >= term1 && difference <= 0 && difference != 0 && difference != termn) {
+                    output = output + "Difference should be positive or last term should be negative for this sequence to work."
+                }
+                else if (difference == 0) {
+                    output = output + "Difference cannot be 0."
+                }
+                else if (termn < term1 || difference < 0) {
+                    for(seq = term1; seq >= termn; seq = seq + difference){
+                    output = output + " " + seq;
+                    }
+                }
+                else {
+                    for(seq = term1; seq <= termn; seq = seq + difference){
+                    output = output + " " + seq;
+                    }
+                }
+                document.getElementById("out").innerHTML = output;
+            }
+
+            function themeChange() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+        </script>
+
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+        html {
+                min-height: 100%;
+                top: 0; left: 0; bottom: 0; right: 0;
+                box-shadow: inset 0px 0px 25px rgb(0, 0, 0);
+                font-family: Inconsolata;
+            }
+
+        body {
+                height: 100%;
+                text-align: center;
+                margin: auto;
+                font-family: 'Inconsolata', monospace;
+                background: var(--primary-color);
+                color: var(--secondary-color);
+            }
+
+        #banner {
+                text-align: center;
+                margin: 50px auto 10px auto;
+                padding: 10px 10px 10px 10px;
+                width: 28%;
+                outline: var(--primary-color) solid;
+                box-shadow: 5px 0 1px  -1px , -5px 0 1px  -1px;
+            }
+
+            h1 {
+                text-shadow: 0px 0px 1.5px 1px;
+                font-size: 36px;
+            }
+
+            .in {
+                position: relative;
+                background: transparent;
+                color: var(--secondary-color);
+                padding: 12px;
+                font-family: 'Inconsolata', monospace;
+                font-size: 18px;
+                margin: 2% auto auto auto;
+                text-align: center;
+                border: none;
+                border-bottom: solid 1.5px var(--secondary-color);
+                outline: none;
+                width: 5%;
+                transition: all 0.4s;
+            }
+            .in:hover {
+                border-bottom: solid 1.5px var(--hover-color);
+                width: 8%;
+            }
+            .in:hover + label {
+                color:var(--hover-color);
+                text-shadow: 0px 0px 3px var(--hover-color);
+            }
+            .in:focus, 
+            .in:not(:placeholder-shown) {
+                border-bottom: solid 1.5px var(--hover-color);
+                width: 8%;
+            }
+
+            label {
+                display: block;
+                color: var(--secondary-color);
+                transform: translate(0, -1.7rem);
+                transition: all 0.2s ease-out;
+                font-size: 14px;
+                margin: auto;
+                width: 11%;
+                background: transparent;
+                border: none;
+                outline: none;
+                transition: all 0.4s;
+            }
+            input:focus + label,
+            input:not(:placeholder-shown) + label {
+                color: var(--hover-color);
+                text-shadow: 0px 0px 3px var(--hover-color);
+                transform: translate(0, -3.3rem);
+                font-size: 12px;
+            }
+
+            #submitButton {
+                font-family: Inconsolata;
+                text-align: center;
+                color: var(--secondary-color);
+                margin: 4% auto auto auto;
+                padding: 12px;
+                border-radius: 50px;  
+                font-size: 16px;
+                text-align: center;
+                background-color: transparent;
+                border: solid 1.5px var(--secondary-color);
+                outline: transparent;
+                width: 9%;
+                transition: 0.2s;
+            }
+            #submitButton:hover {
+                color: var(--hover-color);
+                text-shadow: 0px 0px 3px;
+                box-shadow: inset 0px 0px 3px var(--hover-color);
+                border: solid 1.5px var(--hover-color);
+            }
+
+            #out {
+                color: var(--secondary-color); 
+                text-align: center;
+                margin: 5% auto 4% auto;
+                width: 65%;
+                font-size: 24px;
+            }
+
+            #themeButton {
+                top: 0px;
+                text-align: center;
+                color: var(--secondary-color);
+                margin: 5% auto 0 auto;
+                padding: 16px;
+                border-radius: 100px;  
+                font-size: 3px;
+                text-align: center;
+                background-color: transparent;
+                border: solid 1.5px var(--secondary-color);
+                outline: transparent;
+                width: 1%;
+                background: var(--icon);
+                background-position:center;
+                background-repeat:no-repeat;
+                transition: all 0.2s;
+            }
+            #themeButton:hover {
+                color: var(--hover-color);
+                text-shadow: 0px 0px 3px var(--hover-color);
+                box-shadow: inset 0px 0px 3px;
+                border: solid 1.5px var(--hover-color);
+            }
+
+            :root {
+                --primary-color: #1C1E26;
+                --secondary-color: rgb(253, 220, 195);
+                --hover-color: rgb(255, 237, 224);
+                --icon: url('sun.svg');
+            }  
+
+            .dark-mode {
+                --primary-color: rgb(253, 220, 195);
+                --secondary-color: #1C1E26;
+                --hover-color: rgb(14, 15, 15);
+                --icon: url('moon.svg');
+            }
+        </style>
+    </head>
+
+    <body>
+        <button id="themeButton" onclick="themeChange();"></button>
+        <div id="banner"><h1>Arithmetic Sequences</h1></div>
+            <div class="wrap">
+                <input type="text" id="t1" class="in" placeholder=" " maxlength="5"/>
+                <label for="t1" class="placeholder">First Term</label>
+            </div>
+            <div class="wrap">
+                <input type="text" id="cd" class="in" placeholder=" " maxlength="5"/>
+                <label for="cd" class="placeholder">Difference</label>
+            </div>
+            <div class="wrap">
+                <input type="text" id="tn" class="in" placeholder=" " maxlength="5"/>
+                <label for="tn" class="placeholder">Last Term</label>
+            </div>
+        <button id="submitButton" onclick="arithmeticSequence();">Submit</button>
+        <div id="out"></div>
+    </body>
+</html> 
